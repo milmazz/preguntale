@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% block title %}Bienvenido{% endblock %}
 {% block content %}
             <div class="jumbotron">
                 <h1>
@@ -65,8 +66,8 @@
                     <h2>
                         Pregúntale al alcalde más cercano
                     </h2>
-                    <hr />
-                    
+                    <hr>
+
                     <div class="media">
                         <a class="pull-left" href="#"><img class="img-circle" src="/assets/img/mty-small.png" alt="Margarita Arellanes"></a>
                         <div class="media-body">
@@ -90,10 +91,17 @@
                     <hr>
 
                     <h2>
+                        Estadísticas generales
+                    </h2>
+                    <hr>
+                     <p>Conoce un poco sobre las <a href="/stats" title="Estadísticas generales">estadísticas generales</a> de los alcaldes en la zona metropolitana de Nuevo León.</p>
+
+                    <hr>
+                    <h2>
                         Preguntas que han hecho otras personas cerca de ti
                     </h2>
-                    <hr />
 
+                    <hr>
                     <h3>
                         <a href="/question">¿Por qué no dar un inicio de vida equitativo a los niños recién nacidos (ropa, sábanas, juguetes)?</a>
                     </h3>
@@ -139,7 +147,7 @@
                 <div class="col-md-4 column">
                     <p class="text-center"><img class="img-circle" src="holder.js/140x140"></p>
                     <p class="text-info lead">
-                        <span class="badge">2</span> Promueve tu causa con tu familia, amigos y vecinos. 
+                        <span class="badge">2</span> Promueve tu causa con tu familia, amigos y vecinos.
                     </p>
                 </div>
                 <div class="col-md-4 column">

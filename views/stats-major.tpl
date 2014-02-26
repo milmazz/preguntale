@@ -1,86 +1,88 @@
 {% extends "base.html" %}
 
-{% block extrahead %}  
-	<script src="http://code.highcharts.com/highcharts.js"></script>
-	<script src="http://code.highcharts.com/modules/exporting.js"></script>
+{% block extrahead %}
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+  <script src="http://code.highcharts.com/modules/exporting.js"></script>
 {% endblock extrahead %}
 
+{% block title %}Estadísticas por alcalde{% endblock %}
+
 {% block content %}
-			<div class="row clearfix">
-				<div class="col-md-12 column">
-					<div class="media">
-					  <a class="pull-left" href="#">
-					    <img class="img-circle" src="/assets/img/mty.png">
-					  </a>
-					  <div class="media-body">
-					    <h2 class="media-heading"><a href="#">Margarita Arellanes</a></h2>
-					    <dl>
-							<dt>Alcaldía:</dt>
-							<dd>Monterrey</dd>
-							<dt>Twitter:</dt>
-							<dd><a href="https://twitter.com/marellanesc">@marellanesc</a></dd>
-						</dl>
-					  </div>
-					</div>
-				</div>
-				
-				<div class="col-md-12 column">
-					<ul class="nav nav-tabs">
-					  <li><a href="/people">Preguntas</a></li>
-					  <li class="active"><a href="/stats/major">Estadísticas</a></li>
-					</ul>
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="img-circle" src="/assets/img/mty.png">
+            </a>
+            <div class="media-body">
+              <h2 class="media-heading"><a href="#">Margarita Arellanes</a></h2>
+              <dl>
+              <dt>Alcaldía:</dt>
+              <dd>Monterrey</dd>
+              <dt>Twitter:</dt>
+              <dd><a href="https://twitter.com/marellanesc">@marellanesc</a></dd>
+            </dl>
+            </div>
+          </div>
+        </div>
 
-					<div class="col-md-6 column">
-						<h3>
-							Porcentaje de preguntas atendidas
-						</h3>
+        <div class="col-md-12 column">
+          <ul class="nav nav-tabs">
+            <li><a href="/people">Preguntas</a></li>
+            <li class="active"><a href="/stats/major">Estadísticas</a></li>
+          </ul>
 
-						<div id="chart1"></div>
-						
-					</div>
-					<div class="col-md-6 column">
-						<h3>
-							Avance a lo largo del tiempo
-						</h3>
+          <div class="col-md-6 column">
+            <h3>
+              Porcentaje de preguntas atendidas
+            </h3>
 
-						<div id="chart2"></div>
-					</div>
-					<hr>
-					<div class="col-md-6 column">
-						<h3>
-							Atención en el mes por categoría
-						</h3>
+            <div id="chart1"></div>
 
-						<div id="chart3"></div>
-						
-					</div>
+          </div>
+          <div class="col-md-6 column">
+            <h3>
+              Avance a lo largo del tiempo
+            </h3>
 
-					<div class="col-md-6 column">
-						<h3>
-							Distribución por categorías en el mes
-						</h3>
+            <div id="chart2"></div>
+          </div>
+          <hr>
+          <div class="col-md-6 column">
+            <h3>
+              Atención en el mes por categoría
+            </h3>
 
-						<div id="chart4"></div>
-						
-					</div>
-				</div>
-			</div>
+            <div id="chart3"></div>
+
+          </div>
+
+          <div class="col-md-6 column">
+            <h3>
+              Distribución por categorías en el mes
+            </h3>
+
+            <div id="chart4"></div>
+
+          </div>
+        </div>
+      </div>
 {% endblock content %}
 
 {% block scripts %}
 <script type="text/javascript">
 $(function () {
-		Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function(color) {
-		    return {
-		        radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
-		        stops: [
-		            [0, color],
-		            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-		        ]
-		    };
-		});
-		
-		// Build the chart
+    Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function(color) {
+        return {
+            radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+            stops: [
+                [0, color],
+                [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+            ]
+        };
+    });
+
+    // Build the chart
         $('#chart1').highcharts({
             chart: {
                 plotBackgroundColor: null,
@@ -94,7 +96,7 @@ $(function () {
                 enabled: false
             },
             tooltip: {
-        	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
             },
             plotOptions: {
                 pie: {
@@ -132,9 +134,9 @@ $(function () {
                     'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
             },
             yAxis: {
-            	title: {
-            		text: 'Valores'
-            	},
+              title: {
+                text: 'Valores'
+              },
                 plotLines: [{
                     value: 0,
                     width: 1,
@@ -155,7 +157,7 @@ $(function () {
                 data: [5, 4, 6, 10, 15, 20, 24, 21, 20, 16, 10, 6]
             }]
         });
-    
+
         $('#chart3').highcharts({
             chart: {
                 type: 'column'
@@ -231,7 +233,7 @@ $(function () {
                 enabled: false
             },
             tooltip: {
-        	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
             },
             plotOptions: {
                 pie: {

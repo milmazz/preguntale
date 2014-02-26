@@ -1,21 +1,23 @@
 {% extends "base.html" %}
 
 {% block extrahead %}
-	<script src="http://code.highcharts.com/highcharts.js"></script>
-	<script src="http://code.highcharts.com/modules/exporting.js"></script>
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+  <script src="http://code.highcharts.com/modules/exporting.js"></script>
 {% endblock extrahead %}
 
+{% block title %}Estadísticas generales{% endblock %}
+
 {% block content %}
-			<div class="row clearfix">
-				<div class="col-md-12 column">
+      <div class="row clearfix">
+        <div class="col-md-12 column">
                 <img class="img-circle" src="/assets/img/mty.png">
                 <img class="img-circle" src="holder.js/90x90">
                 <img class="img-circle" src="holder.js/90x90">
                 <img class="img-circle" src="holder.js/90x90">
                 <img class="img-circle" src="holder.js/90x90">
-				</div>
-				
-				<div class="col-md-12 column">
+        </div>
+
+        <div class="col-md-12 column">
 
                     <h3>
                         Promedios por municipio
@@ -23,23 +25,23 @@
 
                     <div id="chart1"></div>
 
-				</div>
-			</div>
+        </div>
+      </div>
 {% endblock content %}
 
 {% block scripts %}
 <script type="text/javascript">
 $(function () {
-		Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function(color) {
-		    return {
-		        radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
-		        stops: [
-		            [0, color],
-		            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-		        ]
-		    };
-		});
-		
+    Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function(color) {
+        return {
+            radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+            stops: [
+                [0, color],
+                [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+            ]
+        };
+    });
+
         $('#chart1').highcharts({
             chart: {
             },
@@ -110,7 +112,7 @@ $(function () {
                 }, {
                     name: 'García',
                     y: 9,
-                    color: Highcharts.getOptions().colors[5] 
+                    color: Highcharts.getOptions().colors[5]
                 }],
                 center: [40, 55],
                 size: 100,

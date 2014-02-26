@@ -74,8 +74,10 @@ def post_question():
     if not entity.get("_id"):
         abort(400, "No _id specified")
 
-    # FIXME: Add ValidationError exception
-    db.questions.insert(entity)
+    try:
+        db.questions.insert(entity)
+    except ValidationError as error:
+        return error
 
 
 if __name__ == "__main__":

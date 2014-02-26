@@ -1,0 +1,27 @@
+{
+  "name": "preguntale",
+  "version": "0.0.1",
+  "homepage": "https://github.com/milmazz/preguntale",
+  "authors": [
+    "Milton Mazzarri <milmazz@gmail.com>"
+  ],
+  "description": "Preguntale App",
+  "main": "app.py",
+  "keywords": [
+    "python",
+    "hackaton"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "assets/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1",
+    "html5shiv": "~3.7.0",
+    "holderjs": "~2.3.1"
+  }
+}

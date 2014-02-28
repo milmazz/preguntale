@@ -5,7 +5,8 @@ import os.path
 import json
 from bson import json_util
 
-from bottle import Bottle, run, request, template, static_file, route, abort, response, jinja2_template as template
+from bottle import (Bottle, run, request, static_file, abort,
+                    response, jinja2_template as template)
 from pymongo import MongoClient
 
 app = Bottle()
@@ -67,17 +68,13 @@ def get_question(id):
 @app.route("/api/v1/questions", method="POST")
 def post_question():
     data = request.body.readline()
-    print data
     if not data:
         abort(400, "No data received")
     entity = json.loads(data)
     if not entity.get("_id"):
         abort(400, "No _id specified")
 
-    try:
-        db.questions.insert(entity)
-    except ValidationError as error:
-        return error
+    db.questions.insert(entity)
 
 
 if __name__ == "__main__":

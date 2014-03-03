@@ -48,6 +48,33 @@ def assets(filepath):
 # Initial API
 @app.route("/api/v1/questions")
 def get_questions():
+    """
+    Get the details about the lasts questions by default.
+
+    :param question_ids: The list of questions (listed as a comma separated
+    string) that will be returned.
+    :type questions_id: str or None
+    :param fields: The fields that will be returned for every question if
+    applies. This parameter should be formed as a comma separated string with
+    the field names. Otherwise all the available fields should be returned.
+    :type fields: str or None
+    :param limit: The maximum number of questions objects that will be returned
+    by request, no more than 100.
+    :type limit: int or None
+    :param offset: The offset by limit questions. Otherwise, returns the first
+    page of questions.
+    :type offset: int or None
+    :param sort: The order by which the questions will be returned based on the
+    date and time the question was created, published_asc or published_desc.
+    Otherwise, returns questions in the descending order in which they were
+    created.
+    :type sort: str or None
+    :param to: The ID of the person who's acting as a receiver of a question.
+    :type to: int or None
+    :param from: The ID of the person who's acting as sender of a question.
+    :type from: int or None
+
+    """
     response.content_type = "application/json"
     questions = db.questions.find()
     results = [doc for doc in questions]
@@ -57,12 +84,36 @@ def get_questions():
     return json.dumps(results, default=json_util.default)
 
 
-@app.route("/api/v1/questions/:id")
-def get_question(id):
-    question = db.questions.find_one({"_id": 1})
-    if not question:
-        abort(404, "No question with id %s" % id)
-    return question
+@app.route("/api/v1/questions/:question_id")
+def get_question(question_id):
+    """Get the details about a question based on the ID.
+
+    :param question_id: ID of the question
+    :type question_id: int
+    :param fields: The fields that will be returned in the response. This
+    parameter should be formed as a comma separated string with the field
+    names. Otherwise, all the available fields will be returned.
+    :type fields: str or None
+
+    :returns: Information about a particular question
+    :rtype: JSON
+
+    """
+    fields = request.query.fields.split(",")
+    try:
+        question_id = int(question_id)
+    except ValueError:
+        abort(400, "Bad request, invalid ID: '%s'" % question_id)
+
+    if fields:
+        # TODO: Validate field names.
+        result = db.questions.find_one({"_id": question_id}, fields=fields)
+    else:
+        result = db.questions.find_one({"_id": question_id})
+
+    if not result:
+        abort(404, "No question with the ID %s" % id)
+    return result
 
 
 @app.route("/api/v1/questions", method="POST")
